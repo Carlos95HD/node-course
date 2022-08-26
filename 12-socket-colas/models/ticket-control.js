@@ -56,13 +56,13 @@ class TicketControl {
 
   atenderTicket( escritorio ) {
     //No tenemos tickets
-    if (this.tickets.length) {
+    if (this.tickets.length === 0 ) {
       return null;
     }
 
 
     //Si hay tickets
-    const ticket = this.tickets.unshift(); //this.tickets[0]
+    const ticket = this.tickets.shift(); //this.tickets[0]
     ticket.escritorio = escritorio; //asignar escritorio al ticket
     //Añadir al principio
     this.ultimos4.unshift(ticket);
@@ -71,6 +71,8 @@ class TicketControl {
       //cortar el arreglo en la ultima posicion
       this.ultimos4.splice( -1, 1 )
     }
+
+    this.guardarDB();
 
     return ticket;
   }
